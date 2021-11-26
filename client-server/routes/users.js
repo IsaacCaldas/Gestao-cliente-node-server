@@ -7,7 +7,6 @@ var client = restify.createJsonClient({
     url: 'http://localhost:4000'
 })
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
 
     client.get('/users', function(err, request, response, obj) {
@@ -15,6 +14,7 @@ router.get('/', function(req, res, next) {
 
         res.json(obj);
     });
+
 });
 
 router.get('/:id', function(req, res, next) {
@@ -24,6 +24,7 @@ router.get('/:id', function(req, res, next) {
 
         res.json(obj);
     });
+
 });
 
 router.put('/:id', function(req, res, next) {
@@ -32,7 +33,9 @@ router.put('/:id', function(req, res, next) {
         assert.ifError(err);
 
         res.json(obj);
+
     });
+
 });
 
 router.delete('/:id', function(req, res, next) {
@@ -41,17 +44,20 @@ router.delete('/:id', function(req, res, next) {
         assert.ifError(err);
 
         res.json(obj);
+
     });
+
 });
 
+router.post('/', function(req, res, next) {
 
-router.post('/:id', function(req, res, next) {
-
-    client.post(`/users/`, req.body, function(err, request, response, obj) {
+    client.post(`/users`, req.body, function(err, request, response, obj) {
         assert.ifError(err);
 
         res.json(obj);
+
     });
+
 });
 
 module.exports = router;
